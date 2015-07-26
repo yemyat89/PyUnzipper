@@ -6,21 +6,24 @@ import shutil
 
 def _cleanUpFirst(filename):
     path = os.path.split(filename)[0]
-    ald_extracted = os.path.join(path, os.path.splitext(filename)[0])
-    
+    ald_extracted = os.path.splitext(filename)[0]
     if os.path.exists(ald_extracted):
         print 'File (%s) exists. Overriding it.' % ald_extracted
         shutil.rmtree(ald_extracted)
 
-def _unzipDirectory(zipfilePath):    
+def _unzipDirectory(zipfilePath, dest_dir=None):    
     newpath, fname = os.path.split(zipfilePath)
-    if not newpath:
-        newpath = './%s' % newpath
+    if dest_dir:
+        newpath = dest_dir
+    else:
+        if not newpath:
+            newpath = './'
+    newpath = os.path.join(newpath, os.path.splitext(fname)[0])
     
     with zipfile.ZipFile(zipfilePath) as zfile:
         zfile.extractall(newpath)
-
-    return os.path.join(newpath, os.path.splitext(fname)[0])
+    
+    return newpath
         
 
 def _getallzipsInside(d):
@@ -36,10 +39,9 @@ def _getallzipsInside(d):
     return zips
 
 
-def extract(zfile, delete_zip=False):
-    
+def extract(zfile, dest_dir=None, delete_zip=False):
     try:
-        croot = _unzipDirectory(zfile)
+        croot = _unzipDirectory(zfile, dest_dir=dest_dir)
         internal_zips = _getallzipsInside(croot)
         for izipfile in internal_zips:
             extract(izipfile, delete_zip=True)
@@ -55,16 +57,26 @@ def extract(zfile, delete_zip=False):
 if __name__ == '__main__':
     
     if len(sys.argv) < 2:
-        print 'Usage: python do_unzip.py [ZIPFILE_NAME]'
+        print 'Usage: python do_unzip.py ZIPFILE_NAME [DESTINATION]'
         sys.exit(1)
 
     # Remove if there is already a directory with same name as zip file
 
     filename = sys.argv[1]
-    _cleanUpFirst(filename)
+    
+    if len(sys.argv) > 2:
+        target = sys.argv[2]
+        if not os.path.exists(target):
+            print 'ERROR: Target path %s does not exist.' % target
+            sys.exit(1)
+        tgclean = os.path.join(target, os.path.split(filename)[1])
+        _cleanUpFirst(tgclean)
+    else:
+        target = None
+        _cleanUpFirst(filename)
     
     # Do the extraction
 
-    extract(filename)
+    extract(filename, dest_dir=target)
     
     sys.exit(0)
