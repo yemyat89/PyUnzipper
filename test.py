@@ -85,9 +85,10 @@ class SimpleTest(unittest.TestCase):
             (extract_dir, 'test-ymt', 'a/b/c/d/f/data6.txt'),
             (extract_dir, 'test-ymt', 'a/b/c/data7.txt'),
         ]
-
-        p = os.path.join(*x[0])
-        assert (os.path.exists(p) == True)
+        
+        for xi in x:
+            p = os.path.join(*xi)
+            assert (os.path.exists(p) == True)
 
 
     def testExtract(self):
