@@ -14,7 +14,7 @@ This tool allows you to extract a ZIP file which may contain nested zips. It goe
 
 ```
     from extract_zip import extractFiles
-    extractFiles([ZIP_FILE])
+    extractFiles([ZIP_FILE], (DESTINATION))
 ```
 
 ##Example

@@ -54,7 +54,7 @@ def extract(zfile, dest_dir=None, delete_zip=False):
             os.remove(zfile)
 
 
-def extractFiles(zipfile_name, destination_dir=None, delete_zip=False):
+def extractFiles(zipfile_name, destination_dir=None):
     
     # zipfile valid path?
     
@@ -76,7 +76,7 @@ def extractFiles(zipfile_name, destination_dir=None, delete_zip=False):
         print 'Directory %s exists.' % newpath
         return None
     
-    return extract(zipfile_name, destination_dir, delete_zip)
+    return extract(zipfile_name, destination_dir, delete_zip=False)
 
 
 if __name__ == '__main__':
