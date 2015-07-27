@@ -54,6 +54,31 @@ def extract(zfile, dest_dir=None, delete_zip=False):
             os.remove(zfile)
 
 
+def extractFiles(zipfile_name, destination_dir=None, delete_zip=False):
+    
+    # zipfile valid path?
+    
+    if not os.path.exists(zipfile_name):
+        print 'Zip file %s not found.' % zipfile_name
+        return None
+
+    # directory exists
+
+    path = os.path.split(zipfile_name)[0]
+    if destination_dir is not None:
+        path = destination_dir
+    
+    fn = os.path.split(zipfile_name)[1]
+    fn = os.path.splitext(fn)[0]
+
+    newpath = os.path.join(path, fn)
+    if os.path.exists(newpath):
+        print 'Directory %s exists.' % newpath
+        return None
+    
+    return extract(zipfile_name, destination_dir, delete_zip)
+
+
 if __name__ == '__main__':
     
     if len(sys.argv) < 2:
@@ -66,17 +91,11 @@ if __name__ == '__main__':
     
     if len(sys.argv) > 2:
         target = sys.argv[2]
-        if not os.path.exists(target):
-            print 'ERROR: Target path %s does not exist.' % target
-            sys.exit(1)
-        tgclean = os.path.join(target, os.path.split(filename)[1])
-        _cleanUpFirst(tgclean)
     else:
         target = None
-        _cleanUpFirst(filename)
     
     # Do the extraction
 
-    extract(filename, dest_dir=target)
+    extractFiles(filename, destination_dir=target)
     
     sys.exit(0)
