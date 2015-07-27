@@ -25,25 +25,25 @@ Calling the script with provided sample file to extract inside `/tmp/extract`.
     python extract_zip.py sample_input/package_valid.zip /tmp/extract
 ```
 
-The result is as follows.
+The result is files being extracted as follows.
 
 ```
-    /tmp
-    /tmp/extract
-    /tmp/extract/package_valid
-    /tmp/extract/package_valid/package_valid
-    /tmp/extract/package_valid/package_valid/input
-    /tmp/extract/package_valid/package_valid/input/external
-    /tmp/extract/package_valid/package_valid/input/external/data.vmx
-    /tmp/extract/package_valid/package_valid/input/internal
-    /tmp/extract/package_valid/package_valid/path
-    /tmp/extract/package_valid/package_valid/path/abc
-    /tmp/extract/package_valid/package_valid/path/abc/abc
-    /tmp/extract/package_valid/package_valid/path/abc/abc/opaque
-    /tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque
-    /tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/ghop
-    /tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/ghop/ghop
-    /tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/ghop/ghop/lma.txt
-    /tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/lkl.txt
-    /tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/nn.txt
+/tmp
+/tmp/extract
+/tmp/extract/package_valid
+/tmp/extract/package_valid/package_valid
+/tmp/extract/package_valid/package_valid/input
+/tmp/extract/package_valid/package_valid/input/external
+/tmp/extract/package_valid/package_valid/input/external/data.vmx
+/tmp/extract/package_valid/package_valid/input/internal
+/tmp/extract/package_valid/package_valid/path
+/tmp/extract/package_valid/package_valid/path/abc
+/tmp/extract/package_valid/package_valid/path/abc/abc
+/tmp/extract/package_valid/package_valid/path/abc/abc/opaque
+/tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque
+/tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/ghop
+/tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/ghop/ghop
+/tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/ghop/ghop/lma.txt
+/tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/lkl.txt
+/tmp/extract/package_valid/package_valid/path/abc/abc/opaque/opaque/nn.txt
 ```
